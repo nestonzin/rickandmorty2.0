@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CharactersService {
+  characterUrl = 'https://rickandmortyapi.com/api/character';
+  constructor(private httpClient: HttpClient) {}
 
-  constructor() { }
+  getAllCharacters() {
+    return this.httpClient.get(this.characterUrl);
+  }
+  
 }
