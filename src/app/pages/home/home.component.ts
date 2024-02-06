@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { CharactersService } from '../../shared/services/characters.service';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
 
-import { HttpClientModule } from '@angular/common/http';
-
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AutoCompleteModule, HttpClientModule],
+  imports: [AutoCompleteModule, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
