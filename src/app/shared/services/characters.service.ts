@@ -6,10 +6,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CharactersService {
   characterUrl = 'https://rickandmortyapi.com/api/character';
+
   constructor(private httpClient: HttpClient) {}
 
   getAllCharacters() {
     return this.httpClient.get(this.characterUrl);
   }
-  
+
+  getNextPageCharacters(nextPageUrl: any) {
+    return this.httpClient.get(nextPageUrl);
+  }
+
+  getPrevPageCharacters(prevPageUrl: string) {
+    return this.httpClient.get(prevPageUrl);
+  }
 }

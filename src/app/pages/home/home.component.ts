@@ -15,6 +15,9 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 export class HomeComponent {
   personagens: any;
 
+  prevPageUrl: string | null = null;
+  nextPageUrl: string | null = null;
+
   ngOnInit() {
     this.getAllCharacters();
   }
@@ -24,7 +27,29 @@ export class HomeComponent {
   getAllCharacters() {
     this.charactersService.getAllCharacters().subscribe((res) => {
       this.personagens = res;
+      this.nextPageUrl = this.personagens.info.next;
+      this.prevPageUrl = this.personagens.info.prev;
       console.log(this.personagens, 'ahsdakjh');
     });
+  }
+
+  getNextPageCharacters() {
+    this.charactersService
+      .getNextPageCharacters(this.nextPageUrl)
+      .subscribe((res) => {
+        this.personagens = res;
+        this.nextPageUrl = this.personagens.info.next;
+        this.prevPageUrl = this.personagens.info.prev;
+      });
+  }
+
+  getPrevPageCharacters(prevPageUrl: string) {
+    this.charactersService
+      .getPrevPageCharacters(prevPageUrl)
+      .subscribe((res) => {
+        this.personagens = res;
+        this.nextPageUrl = this.personagens.info.next;
+        this.prevPageUrl = this.personagens.info.prev;
+      });
   }
 }

@@ -4,15 +4,22 @@
   <p-autoComplete></p-autoComplete>
 </div>
 <div class="flex flex-wrap gap-5 align-items-center justify-content-center p-5">
+  <button (click)="getNextPageCharacters()">Teste</button>
   <div
     class="flex flex-column align-items-center gap-3 p-5 px-3 shadow-1 border-round-2xl"
     *ngFor="let personagem of personagens.results"
   >
     <span>{{ personagem.name }}</span>
     <img src="{{ personagem.image }}" alt="{{ personagem.name }}" />
-    <div class="flex justify-content-center align-items-center gap-1">
-      <i class="pi pi-map-marker" style="font-size: 1rem"></i>
-      <span>{{ personagem.location.name }}</span>
-    </div>
+    <!-- <div class="flex justify-content-center align-items-center gap-1"> -->
+    <!-- <i class="pi pi-map-marker" style="font-size: 1rem"> </i> -->
+
+    <span> 🪐{{ personagem.location.name }}</span>
+    <!-- </div> -->
+    <span>{{ personagem.species }}</span>
+    <span>{{ personagem.type ? personagem.type : "" }}</span>
+    <span>{{
+      personagem.status === "unknown" ? "???" : personagem.status
+    }}</span>
   </div>
 </div>
