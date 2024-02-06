@@ -17,7 +17,7 @@ export class CharactersService {
     return this.httpClient.get(nextPageUrl);
   }
 
-  getPrevPageCharacters(prevPageUrl: string) {
+  getPrevPageCharacters(prevPageUrl: any) {
     return this.httpClient.get(prevPageUrl);
   }
 }

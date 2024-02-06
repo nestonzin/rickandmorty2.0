@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { CharactersService } from '../../shared/services/characters.service';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AutoCompleteModule, CommonModule],
+  imports: [AutoCompleteModule, CommonModule, ButtonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -43,9 +44,9 @@ export class HomeComponent {
       });
   }
 
-  getPrevPageCharacters(prevPageUrl: string) {
+  getPrevPageCharacters() {
     this.charactersService
-      .getPrevPageCharacters(prevPageUrl)
+      .getPrevPageCharacters(this.prevPageUrl)
       .subscribe((res) => {
         this.personagens = res;
         this.nextPageUrl = this.personagens.info.next;
