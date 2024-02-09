@@ -1,5 +1,6 @@
 <div
   class="layoutHero flex flex-column justify-content-center align-items-center border-round"
 >
-  <p-autoComplete></p-autoComplete>
+  <input type="text" pInputText [(ngModel)]="filtro.name" />
+  <p-button label="Search" (onClick)="getCharacterByFilter()"></p-button>
 </div>

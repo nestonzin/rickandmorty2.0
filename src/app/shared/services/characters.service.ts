@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError } from 'rxjs';
 
 import {
   CharacterFilter,
@@ -12,6 +12,9 @@ import {
 })
 export class CharactersService {
   characterUrl = 'https://rickandmortyapi.com/api/character/';
+  private filteredCharactersSubject =
+    new BehaviorSubject<CharacterApiResponse | null>(null);
+  filteredCharacters$ = this.filteredCharactersSubject.asObservable();
 
   constructor(private httpClient: HttpClient) {}
 
