@@ -2,14 +2,16 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CharactersService } from '../../shared/services/characters.service';
+import { CharacterFilter } from '../../shared/interfaces/characters';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AutoCompleteModule, CommonModule, ButtonModule],
+  imports: [AutoCompleteModule, CommonModule, ButtonModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -18,6 +20,14 @@ export class HomeComponent {
 
   prevPageUrl: string | null = null;
   nextPageUrl: string | null = null;
+
+  filtro: CharacterFilter = {
+    name: '',
+    type: '',
+    gender: '',
+    species: '',
+    status: '',
+  };
 
   ngOnInit() {
     this.getAllCharacters();
@@ -53,4 +63,17 @@ export class HomeComponent {
         this.prevPageUrl = this.personagens.info.prev;
       });
   }
+
+  getCharacterById(id: number) {
+    this.charactersService.getCharacterById(id).subscribe((res) => {
+      console.log(res, 'tst');
+    });
+  }
+
+  //nao ta funcionando
+  // getCharacterByFilter(filter: any) {
+  //   this.charactersService.getCharacterByFilter(filter).subscribe((res) => {
+  //     console.log(res, 'jshdasjfg');
+  //   });
+  // }
 }

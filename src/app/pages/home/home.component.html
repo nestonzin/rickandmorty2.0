@@ -2,6 +2,9 @@
   class="layoutHero flex flex-column justify-content-center align-items-center border-round"
 >
   <p-autoComplete></p-autoComplete>
+
+  <!-- <input type="text" [(ngModel)]="filtro.name" />
+  <button (click)="getCharacterByFilter($event)">Pesquisar</button> -->
 </div>
 <div class="flex flex-wrap gap-5 align-items-center justify-content-center p-5">
   <div
@@ -10,16 +13,19 @@
   >
     <span>{{ personagem.name }}</span>
     <img src="{{ personagem.image }}" alt="{{ personagem.name }}" />
-    <!-- <div class="flex justify-content-center align-items-center gap-1"> -->
-    <!-- <i class="pi pi-map-marker" style="font-size: 1rem"> </i> -->
-
     <span> 🪐{{ personagem.location.name }}</span>
-    <!-- </div> -->
     <span>{{ personagem.species }}</span>
-    <span>{{ personagem.type ? personagem.type : "" }}</span>
+    <span>{{ personagem.type ? personagem.type : " unknown type " }}</span>
     <span>{{
       personagem.status === "unknown" ? "???" : personagem.status
     }}</span>
+    <span>{{ "Participations " + personagem.episode.length }}</span>
+    <p-button
+      label="Teste"
+      icon="pi pi-angle-left
+"
+      (onClick)="getCharacterById(personagem.id)"
+    ></p-button>
   </div>
 
   <div class="flex w-full align-items-center justify-content-center gap-5">
