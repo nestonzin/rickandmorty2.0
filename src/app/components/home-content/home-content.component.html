@@ -1,1 +1,38 @@
-<p>home-content works!</p>
+<div class="flex flex-wrap gap-5 align-items-center justify-content-center p-5">
+  <div
+    class="flex flex-column align-items-center gap-3 p-5 px-3 shadow-1 border-round-2xl"
+    *ngFor="let personagem of personagens.results"
+  >
+    <span>{{ personagem.name }}</span>
+    <img src="{{ personagem.image }}" alt="{{ personagem.name }}" />
+    <span> 🪐{{ personagem.location.name }}</span>
+    <span>{{ personagem.species }}</span>
+    <span>{{ personagem.type ? personagem.type : " unknown type " }}</span>
+    <span>{{
+      personagem.status === "unknown" ? "???" : personagem.status
+    }}</span>
+    <span>{{ "Participations " + personagem.episode.length }}</span>
+    <p-button
+      label="Teste"
+      icon="pi pi-angle-left
+"
+      (onClick)="getCharacterById(personagem.id)"
+    ></p-button>
+  </div>
+
+  <div class="flex w-full align-items-center justify-content-center gap-5">
+    <p-button
+      label="Prev page"
+      icon="pi pi-angle-left
+"
+      (onClick)="getPrevPageCharacters()"
+    ></p-button>
+    <p-button
+      label="Next page"
+      icon="pi pi-angle-right
+"
+      iconPos="right"
+      (onClick)="getNextPageCharacters()"
+    ></p-button>
+  </div>
+</div>
