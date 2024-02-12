@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 import { CharactersService } from '../../shared/services/characters.service';
 import { CharacterFilter } from '../../shared/interfaces/characters';
@@ -11,7 +12,13 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-home-content',
   standalone: true,
-  imports: [CommonModule, ButtonModule, LoadingComponent, HeroComponent],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    LoadingComponent,
+    HeroComponent,
+    RouterLink,
+  ],
   templateUrl: './home-content.component.html',
   styleUrl: './home-content.component.scss',
 })
