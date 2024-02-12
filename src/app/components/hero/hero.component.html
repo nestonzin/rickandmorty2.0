@@ -1,6 +1,16 @@
 <div
-  class="layoutHero flex flex-column justify-content-center align-items-center border-round"
+  class="layoutHero flex flex-column justify-content-center gap-3 align-items-center border-round"
 >
-  <input type="text" pInputText [(ngModel)]="filtro.name" />
-  <p-button label="Search" (onClick)="getCharacterByFilter()"></p-button>
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="filtro.name"
+    placeholder="Rick Sanchez"
+  />
+
+  <p-button
+    label="Pesquisar por nome"
+    icon="pi pi-search"
+    (onClick)="getCharacterByFilter()"
+  ></p-button>
 </div>

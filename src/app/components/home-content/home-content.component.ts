@@ -43,7 +43,6 @@ export class HomeContentComponent {
       this.nextPageUrl = this.personagens.info.next;
       this.prevPageUrl = this.personagens.info.prev;
       this.isLoading = false;
-      console.log(this.personagens, 'ahsdakjh');
     });
   }
 
@@ -81,6 +80,8 @@ export class HomeContentComponent {
 
   personagensFiltrados($event: any) {
     this.personagens = $event;
-    console.log($event);
+    this.nextPageUrl = this.personagens.info.next;
+    this.prevPageUrl = this.personagens.info.prev;
+    console.log($event, 'personagens filtrados');
   }
 }

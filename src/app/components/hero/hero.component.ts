@@ -33,7 +33,6 @@ export class HeroComponent {
   getCharacterByFilter() {
     this.characterService.getCharacterByFilter(this.filtro).subscribe((res) => {
       this.personagensFiltrados = res;
-      console.log(this.personagensFiltrados, 'filtrados');
 
       // Emita o evento com os dados atualizados
       this.personagensFiltradosChange.emit(this.personagensFiltrados);
