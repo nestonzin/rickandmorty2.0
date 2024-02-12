@@ -1,27 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CharactersService } from '../../shared/services/characters.service';
 import { CharacterFilter } from '../../shared/interfaces/characters';
 import { LoadingComponent } from '../loading/loading.component';
+import { HeroComponent } from '../hero/hero.component';
 
 import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-home-content',
   standalone: true,
-  imports: [CommonModule, ButtonModule, LoadingComponent],
+  imports: [CommonModule, ButtonModule, LoadingComponent, HeroComponent],
   templateUrl: './home-content.component.html',
   styleUrl: './home-content.component.scss',
 })
 export class HomeContentComponent {
-  personagens: any;
+  @Input() personagens: any;
 
   prevPageUrl: string | null = null;
   nextPageUrl: string | null = null;
 
   isLoading: boolean = false;
-
   filtro: CharacterFilter = {
     name: '',
     type: '',
@@ -32,9 +32,6 @@ export class HomeContentComponent {
 
   ngOnInit() {
     this.getAllCharacters();
-    //  this.charactersService.filteredCharacters$.subscribe((res) => {
-    //    this.personagens = res;
-    //  });
   }
 
   constructor(private charactersService: CharactersService) {}
@@ -80,5 +77,10 @@ export class HomeContentComponent {
       console.log(res, 'tst');
       this.isLoading = false;
     });
+  }
+
+  personagensFiltrados($event: any) {
+    this.personagens = $event;
+    console.log($event);
   }
 }

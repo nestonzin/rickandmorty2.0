@@ -10,4 +10,6 @@ import { HomeContentComponent } from '../../components/home-content/home-content
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  personagens: any;
+}

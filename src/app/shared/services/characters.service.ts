@@ -12,9 +12,9 @@ import {
 })
 export class CharactersService {
   characterUrl = 'https://rickandmortyapi.com/api/character/';
-  private filteredCharactersSubject =
-    new BehaviorSubject<CharacterApiResponse | null>(null);
-  filteredCharacters$ = this.filteredCharactersSubject.asObservable();
+  private personagensFiltradosPorNomeSource = new BehaviorSubject<any>(null);
+  personagensFiltradosPorNome$ =
+    this.personagensFiltradosPorNomeSource.asObservable();
 
   constructor(private httpClient: HttpClient) {}
 

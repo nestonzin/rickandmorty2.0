@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Input } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+
 // import { AutoCompleteModule } from 'primeng/autocomplete';
 
 import { CharactersService } from '../../shared/services/characters.service';
 import { CharacterFilter } from '../../shared/interfaces/characters';
-import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-hero',
@@ -16,6 +18,9 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './hero.component.scss',
 })
 export class HeroComponent {
+  @Input() personagensFiltrados: any;
+  @Output() personagensFiltradosChange = new EventEmitter<any>();
+
   filtro: CharacterFilter = {
     name: '',
     type: '',
@@ -27,7 +32,11 @@ export class HeroComponent {
 
   getCharacterByFilter() {
     this.characterService.getCharacterByFilter(this.filtro).subscribe((res) => {
-      console.log(res);
+      this.personagensFiltrados = res;
+      console.log(this.personagensFiltrados, 'filtrados');
+
+      // Emita o evento com os dados atualizados
+      this.personagensFiltradosChange.emit(this.personagensFiltrados);
     });
   }
 }
