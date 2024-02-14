@@ -1,1 +1,16 @@
-<p>locations works!</p>
+<div class="flex flex-column justify-content-between h-screen">
+  <app-hero></app-hero>
+  <div class="flex flex-wrap justify-content-center p-4 gap-4">
+    <div
+      class="flex flex-column justify-content-center align-items-center gap-3 shadow-3 border-round p-3"
+      *ngFor="let location of locations.results"
+    >
+      <span>{{ location.name }}</span>
+      <span>{{ location.dimension }}</span>
+      <span>{{ location.created | date }}</span>
+      <span>{{ location.type }}</span>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

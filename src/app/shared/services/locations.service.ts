@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocationsService {
+  locationsUrl = 'https://rickandmortyapi.com/api/location';
+  constructor(private httpClient: HttpClient) {}
 
-  constructor() { }
+  getAllLocations() {
+    return this.httpClient.get(this.locationsUrl);
+  }
 }

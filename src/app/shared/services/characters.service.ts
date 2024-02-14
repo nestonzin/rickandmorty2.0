@@ -43,9 +43,8 @@ export class CharactersService {
       .get<CharacterApiResponse>(this.characterUrl, { params })
       .pipe(
         catchError((error) => {
-          // Adicione aqui o tratamento de erros desejado, por exemplo, log ou notificação
           console.error('Erro na requisição:', error);
-          throw error; // Rejeita o Observable com o erro
+          throw error;
         })
       );
   }
