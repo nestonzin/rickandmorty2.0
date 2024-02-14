@@ -25,4 +25,9 @@ export class LocationsComponent {
       console.log(res, 'LSISUDAH');
     });
   }
+
+  getFiltredLocations($event: any) {
+    this.locations = $event;
+    console.log(this.locations, 'tem que logar aq');
+  }
 }

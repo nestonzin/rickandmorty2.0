@@ -11,4 +11,13 @@ export class LocationsService {
   getAllLocations() {
     return this.httpClient.get(this.locationsUrl);
   }
+
+  getFiltredLocation(filter: any) {
+    const params = new HttpParams()
+      .set('name', filter.name || '')
+      .set('type', filter.type || '')
+      .set('dimension', filter.gender || '');
+
+    return this.httpClient.get(this.locationsUrl, { params });
+  }
 }

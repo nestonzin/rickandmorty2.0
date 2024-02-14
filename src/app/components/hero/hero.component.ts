@@ -8,7 +8,17 @@ import { InputTextModule } from 'primeng/inputtext';
 // import { AutoCompleteModule } from 'primeng/autocomplete';
 
 import { CharactersService } from '../../shared/services/characters.service';
-import { CharacterFilter } from '../../shared/interfaces/characters';
+import { LocationsService } from '../../shared/services/locations.service';
+import { LocationFilter } from '../../shared/interfaces/locations';
+import { EpisodesService } from '../../shared/services/episodes.service';
+import { EpisodeFilter } from '../../shared/interfaces/episodes';
+import {
+  CharacterFilter,
+  CharacterApiResponse,
+} from '../../shared/interfaces/characters';
+import { Router } from '@angular/router';
+
+type Filters = LocationFilter | CharacterFilter | EpisodeFilter;
 
 @Component({
   selector: 'app-hero',
@@ -18,24 +28,58 @@ import { CharacterFilter } from '../../shared/interfaces/characters';
   styleUrl: './hero.component.scss',
 })
 export class HeroComponent {
-  @Input() personagensFiltrados: any;
-  @Output() personagensFiltradosChange = new EventEmitter<any>();
+  @Input() characterFilter: CharacterFilter = {};
+  @Output() characterFilterChange = new EventEmitter<CharacterFilter>();
 
-  filtro: CharacterFilter = {
-    name: '',
-    type: '',
-    gender: '',
-    species: '',
-    status: '',
-  };
-  constructor(private characterService: CharactersService) {}
+  @Input() locationFilter: LocationFilter = {};
+  @Output() locationFilterChange = new EventEmitter<LocationFilter>();
+
+  @Input() episodeFilter: EpisodeFilter = {};
+  @Output() episodeFilterChange = new EventEmitter<EpisodeFilter>();
+
+  filtro: Filters = {};
+
+  constructor(
+    private characterService: CharactersService,
+    private locationsService: LocationsService,
+    private episodeService: EpisodesService,
+    private router: Router
+  ) {}
+
+  search() {
+    const rotaAtual = this.router.url;
+
+    if (rotaAtual.includes('home')) {
+      this.getCharacterByFilter();
+    } else if (rotaAtual.includes('locations')) {
+      this.getLocationByFilter();
+    } else if (rotaAtual.includes('episodes')) {
+      this.getEpisodesByFilter();
+    }
+  }
 
   getCharacterByFilter() {
-    this.characterService.getCharacterByFilter(this.filtro).subscribe((res) => {
-      this.personagensFiltrados = res;
+    this.characterService
+      .getCharacterByFilter(this.filtro)
+      .subscribe((res: any) => {
+        this.characterFilter = res;
+        this.characterFilterChange.emit(this.characterFilter);
+      });
+  }
 
-      // Emita o evento com os dados atualizados
-      this.personagensFiltradosChange.emit(this.personagensFiltrados);
+  getEpisodesByFilter() {
+    this.episodeService.getFiltredEpisode(this.filtro).subscribe((res) => {
+      this.episodeFilter = res;
+      this.episodeFilterChange.emit(this.episodeFilter);
+      console.log(res);
+    });
+  }
+
+  getLocationByFilter() {
+    this.locationsService.getFiltredLocation(this.filtro).subscribe((res) => {
+      this.locationFilter = res;
+      this.locationFilterChange.emit(this.locationFilter);
+      console.log(res);
     });
   }
 }
