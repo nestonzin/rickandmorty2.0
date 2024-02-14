@@ -22,7 +22,11 @@
         alt="{{ personagem.name }}"
         class="border-round"
       />
-      <a [routerLink]="['/character', personagem.id]">Mais informações</a>
+      <a
+        [routerLink]="['/character', personagem.id]"
+        class="no-underline text-black-alpha-80 border-1 p-2 border-round"
+        >🕵️‍♂️Mais informações
+      </a>
     </div>
 
     <div class="flex w-full align-items-center justify-content-center gap-5">

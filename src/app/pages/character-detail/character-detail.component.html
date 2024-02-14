@@ -1,1 +1,22 @@
-<p>character-detail works!</p>
+<div class="flex flex-column justify-content-between h-screen">
+  <div class="flex flex-column align-items-center gap-5 p-5">
+    <h1>{{ personagemInfos.name }}</h1>
+    <img
+      src="{{ personagemInfos.image }}"
+      alt="{{ personagemInfos?.name }}"
+      class="border-round-2xl shadow-4"
+    />
+    <span
+      >Data de criação:
+      {{ personagemInfos.created | date : "dd/MM/yyyy" }}</span
+    >
+    <span>Participações: {{ personagemInfos.episode.length }}</span>
+    <span>Espécie: {{ personagemInfos.species }}</span>
+    <span>Genero: {{ personagemInfos.gender }}</span>
+    <span>Status: {{ personagemInfos.status }}</span>
+    <span>Tipo: {{ personagemInfos.type ? personagemInfos.type : "?" }}</span>
+    <span>🚩Localização: {{ personagemInfos.location.name }}</span>
+    <span>🪐Origem: {{ personagemInfos.origin.name }}</span>
+  </div>
+  <app-footer></app-footer>
+</div>
