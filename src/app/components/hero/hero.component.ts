@@ -49,7 +49,7 @@ export class HeroComponent {
   search() {
     const rotaAtual = this.router.url;
 
-    if (rotaAtual.includes('home')) {
+    if (rotaAtual.includes('')) {
       this.getCharacterByFilter();
     } else if (rotaAtual.includes('locations')) {
       this.getLocationByFilter();
